@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    tools:context=".activities.MainActivity">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF5722"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:text="MyMail"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <fragment
+        android:id="@+id/fragment_first"
+        android:name="com.ivancarrillo.aolicacionmail.fragments.FragmentMenu"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="40"
+        tools:layout="@layout/fragment_menu"/>
+
+    <fragment
+        android:id="@+id/fragment_second"
+        android:name="com.ivancarrillo.aolicacionmail.fragments.FragmentCorreo"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="60"
+        tools:layout="@layout/fragment_correo"/>
+
+</LinearLayout>
