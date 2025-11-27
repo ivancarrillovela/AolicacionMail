@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.ivancarrillo.aolicacionmail.R;
-import com.ivancarrillo.aolicacionmail.app.Mail;
+import com.ivancarrillo.aolicacionmail.models.Mail;
 import com.ivancarrillo.aolicacionmail.fragments.FragmentCorreo;
 import com.ivancarrillo.aolicacionmail.fragments.FragmentMenu;
 

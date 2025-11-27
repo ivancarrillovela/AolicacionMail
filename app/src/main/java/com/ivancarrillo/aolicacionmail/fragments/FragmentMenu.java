@@ -11,11 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.ivancarrillo.aolicacionmail.R;
 import com.ivancarrillo.aolicacionmail.adapters.MailAdapter;
-import com.ivancarrillo.aolicacionmail.app.Mail;
+import com.ivancarrillo.aolicacionmail.models.Mail;
 import com.ivancarrillo.aolicacionmail.app.Util;
 
-public class FragmentMenu extends Fragment {
+import io.realm.Realm;
+import io.realm.RealmResults;
 
+public class FragmentMenu extends Fragment {
+    Realm realm;
+    private RealmResults<Mail> listaMails;
     private DataListener callback;
 
     public FragmentMenu() {
@@ -27,12 +31,16 @@ public class FragmentMenu extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        //Obtener datos de la BBDD
+        realm = Realm.getDefaultInstance();
+        listaMails = realm.where(Mail.class).findAll();
+
         // Configuración del RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMenu);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Creamos el adaptador pasándole los datos y el listener del click
-        MailAdapter adapter = new MailAdapter(Util.getDummyData(), new MailAdapter.OnItemClickListener() {
+        // Creamos el adaptador pasándole la lista de mails y el listener del click
+        MailAdapter adapter = new MailAdapter(listaMails, new MailAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Mail mail) {
                 // Cuando se hace click avisamos a la Activity
@@ -41,6 +49,7 @@ public class FragmentMenu extends Fragment {
         });
 
         recyclerView.setAdapter(adapter);
+
         return view;
     }
 
@@ -58,5 +67,11 @@ public class FragmentMenu extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " tiene que implementar DataListener");
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Cerramos la conexión a la BBDD cuando se destruye el fragment
     }
 }

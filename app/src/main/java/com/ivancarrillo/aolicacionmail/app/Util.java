@@ -1,18 +1,35 @@
 package com.ivancarrillo.aolicacionmail.app;
 
+import com.ivancarrillo.aolicacionmail.models.Mail;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 
 public class Util {
-
-    public static String[] colors = new String[]
+    private static final String[] COLORS = new String[]
             {"F44336", "E91E63", "9C27B0", "673AB7", "3F51B5",
                     "03A9F4", "009688", "4CAF50", "CDDC39", "FFC107",
                     "FF5722", "795548", "9E9E9E", "455A64", "FF5722"};
 
-    public static List<Mail> getDummyData() {
+    public static void insertData() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(getaData());
+        realm.commitTransaction();
+        realm.close();
+    }
+    public static String getRandomColor() {
+        // Número aleatorio entre [0] y [14];
+        int randonNumber = new Random().nextInt(COLORS.length);
+        // Devolvemos el color
+        return COLORS[randonNumber];
+    }
+    private static List<Mail> getaData() {
         return new ArrayList<Mail>() {{
             add(new Mail("Presupuesto 2017", "Hola Alejandro, este es el presupuesto para el año 2021 del que mencionaste en la reunión de ayer. Está en formato PDF, ya me dices que te parece. Un Saludo", "antonio@gmail.com"));
             add(new Mail("Cena Empresa", "Queridos amigos, la cena de empresa de este año será en el mismo restaurante que los años pasados, sin embargo la hora será distinta, empieza sobre las 8 de la tarde. Espero verte allí, Saludos.", "empresa@gmail.com"));
@@ -28,13 +45,4 @@ public class Util {
             add(new Mail("Valora este formulario", "Valora este formulario que te he adjuntado, bro.", "lucas@gmail.com"));
         }};
     }
-
-    public static String getRandomColor() {
-        // Número aleatorio entre [0] y [14];
-        int randonNumber = new Random().nextInt(colors.length) + 0;
-        // Devolvemos el color
-        return colors[randonNumber];
-    }
-
-
 }

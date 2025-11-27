@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.ivancarrillo.aolicacionmail.R;
-import com.ivancarrillo.aolicacionmail.app.Mail;
+import com.ivancarrillo.aolicacionmail.models.Mail;
 
 public class FragmentCorreo extends Fragment {
 

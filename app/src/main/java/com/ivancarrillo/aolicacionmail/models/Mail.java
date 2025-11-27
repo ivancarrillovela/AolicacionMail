@@ -1,14 +1,22 @@
-package com.ivancarrillo.aolicacionmail.app;
+package com.ivancarrillo.aolicacionmail.models;
 
-public class Mail {
+import com.ivancarrillo.aolicacionmail.app.App;
+import com.ivancarrillo.aolicacionmail.app.Util;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Mail extends RealmObject {
+    @PrimaryKey
+    private int id;
     private String subject;
     private String message;
     private String senderName;
     private String color;
 
-
+    public Mail(){}
     public Mail(String subject, String message, String senderName) {
+        this.id = App.mailId.incrementAndGet();
         this.subject = subject;
         this.message = message;
         this.senderName = senderName;

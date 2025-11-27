@@ -3,7 +3,7 @@ package com.ivancarrillo.aolicacionmail.activities;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.ivancarrillo.aolicacionmail.R;
-import com.ivancarrillo.aolicacionmail.app.Mail;
+import com.ivancarrillo.aolicacionmail.models.Mail;
 import com.ivancarrillo.aolicacionmail.fragments.FragmentCorreo;
 
 public class CorreoActivity extends AppCompatActivity {

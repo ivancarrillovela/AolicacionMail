@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ivancarrillo.aolicacionmail.R;
-import com.ivancarrillo.aolicacionmail.app.Mail;
+import com.ivancarrillo.aolicacionmail.models.Mail;
 import java.util.List;
 
 public class MailAdapter extends RecyclerView.Adapter<MailAdapter.MailHolder> {
