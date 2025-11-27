@@ -2,41 +2,41 @@ package com.ivancarrillo.aolicacionmail.app;
 
 public class Mail {
 
-    private String Subject;
-    private String Message;
-    private String SenderName;
+    private String subject;
+    private String message;
+    private String senderName;
     private String color;
 
 
     public Mail(String subject, String message, String senderName) {
-        this.Subject = subject;
-        this.Message = message;
-        this.SenderName = senderName;
+        this.subject = subject;
+        this.message = message;
+        this.senderName = senderName;
         this.color = Util.getRandomColor();
     }
 
     public String getSubject() {
-        return Subject;
+        return subject;
     }
 
     public void setSubject(String subject) {
-        Subject = subject;
+        this.subject = subject;
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public void setMessage(String message) {
-        Message = message;
+        this.message = message;
     }
 
     public String getSenderName() {
-        return SenderName;
+        return senderName;
     }
 
     public void setSenderName(String senderName) {
-        SenderName = senderName;
+        this.senderName = senderName;
     }
 
     public String getColor() {

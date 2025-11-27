@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity implements FragmentMenu.Data
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Determinamos si es multipanel buscando el segundo fragmento
+        // Vemos si es multipanel buscando el segundo fragmento
         isMultiPanel = (getSupportFragmentManager().findFragmentById(R.id.fragmentCorreo) != null);
     }
 
     @Override
     public void sendData(Mail mail) {
         if (isMultiPanel) {
-            // MODO TABLET: Llamamos al método renderData del fragmento que ya está en pantalla
+            // MODO TABLET: Llamamos al metodo renderData del fragmento que ya está en pantalla
             FragmentCorreo fragmentCorreo = (FragmentCorreo) getSupportFragmentManager().findFragmentById(R.id.fragmentCorreo);
             if (fragmentCorreo != null) {
                 fragmentCorreo.renderData(mail);

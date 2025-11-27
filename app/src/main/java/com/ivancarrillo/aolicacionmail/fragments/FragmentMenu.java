@@ -18,20 +18,8 @@ public class FragmentMenu extends Fragment {
 
     private DataListener callback;
 
-    // 1. Definimos la Interfaz para comunicar con la Activity
-    public interface DataListener {
-        void sendData(Mail mail);
-    }
-
-    // 2. onAttach: Nos aseguramos de que la Activity implementa la interfaz
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        try {
-            callback = (DataListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " debe implementar DataListener");
-        }
+    public FragmentMenu() {
+        // Required empty public constructor
     }
 
     @Override
@@ -39,20 +27,36 @@ public class FragmentMenu extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        // 3. Configuración del RecyclerView
+        // Configuración del RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMenu);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Creamos el adaptador pasándole los datos dummy y el listener del click
+        // Creamos el adaptador pasándole los datos y el listener del click
         MailAdapter adapter = new MailAdapter(Util.getDummyData(), new MailAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Mail mail) {
-                // Cuando se hace click, avisamos a la Activity
+                // Cuando se hace click avisamos a la Activity
                 callback.sendData(mail);
             }
         });
 
         recyclerView.setAdapter(adapter);
         return view;
+    }
+
+    // Definimos la interfaz para comunicar con la Activity
+    public interface DataListener {
+        void sendData(Mail mail);
+    }
+
+    // Nos aseguramos de que la Activity implementa la interfaz
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            callback = (DataListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " tiene que implementar DataListener");
+        }
     }
 }

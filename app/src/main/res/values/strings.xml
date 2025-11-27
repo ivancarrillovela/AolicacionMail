@@ -2,4 +2,10 @@
     <string name="app_name">AolicacionMail</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="correo">Correo</string>
+    <string name="remitente">De:</string>
+    <string name="asunto">Asunto:</string>
+    <string name="ejemploCorreo">ejemplo@ejemplo.com</string>
+    <string name="ejemploMensaje">Ejemplo de mensaje.</string>
+    <string name="ejemploAsunto">Ejemplo de asunto</string>
 </resources>

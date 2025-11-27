@@ -12,7 +12,7 @@
         android:background="#FF5722"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:text="MyMail"
+        android:text="@string/correo"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />

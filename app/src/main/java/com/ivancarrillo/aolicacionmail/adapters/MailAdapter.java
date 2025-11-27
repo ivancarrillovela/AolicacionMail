@@ -1,7 +1,6 @@
 package com.ivancarrillo.aolicacionmail.adapters;
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,24 +15,23 @@ import java.util.List;
 public class MailAdapter extends RecyclerView.Adapter<MailAdapter.MailHolder> {
 
     private List<Mail> listaMails;
-    private OnItemClickListener listener;
+    private OnItemClickListener onItemClickListener;
 
-    public MailAdapter(List<Mail> listaMails, OnItemClickListener listener) {
+    public MailAdapter(List<Mail> listaMails, OnItemClickListener onItemClickListener) {
         this.listaMails = listaMails;
-        this.listener = listener;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public MailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // CORRECCIÓN: Usamos R.layout.item_menu
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, parent, false);
         return new MailHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MailHolder holder, int position) {
-        holder.assignData(listaMails.get(position), listener);
+        holder.assignData(listaMails.get(position));
     }
 
     @Override
@@ -41,7 +39,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailAdapter.MailHolder> {
         return listaMails.size();
     }
 
-    public static class MailHolder extends RecyclerView.ViewHolder {
+    public class MailHolder extends RecyclerView.ViewHolder {
         CardView cardAvatar;
         TextView txtAvatar;
         TextView tvTitle;
@@ -56,19 +54,24 @@ public class MailAdapter extends RecyclerView.Adapter<MailAdapter.MailHolder> {
             tvSnippet = itemView.findViewById(R.id.tvSnippet);
         }
 
-        public void assignData(Mail mail, OnItemClickListener listener) {
+        public void assignData(Mail mail) {
             tvTitle.setText(mail.getSubject());
             tvSnippet.setText(mail.getMessage());
 
-            // Lógica del Avatar: Inicial y Color
+            // Logica del Avatar: Inicial y Color
             if (mail.getSenderName() != null && !mail.getSenderName().isEmpty()) {
                 txtAvatar.setText(mail.getSenderName().substring(0, 1).toUpperCase());
             }
-            // Parseamos el color (viene sin # en tu Util)
+            // Parseamos el color
             String colorHex = "#" + mail.getColor();
             cardAvatar.setCardBackgroundColor(Color.parseColor(colorHex));
 
-            itemView.setOnClickListener(v -> listener.onItemClick(mail));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(mail);
+                }
+            });
         }
     }
 
