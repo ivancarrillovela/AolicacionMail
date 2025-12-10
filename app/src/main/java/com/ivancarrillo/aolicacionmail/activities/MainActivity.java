@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMenu.Data
         setContentView(R.layout.activity_main);
 
         // Vemos si es multipanel buscando el segundo fragmento
-        isMultiPanel = (getSupportFragmentManager().findFragmentById(R.id.fragmentCorreo) != null);
+        isMultiPanel = findViewById(R.id.fragmentCorreo) != null;
     }
 
     @Override
